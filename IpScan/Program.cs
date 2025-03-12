@@ -22,13 +22,13 @@ namespace IpScan {
                 if (await Scan(ip, port))
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.Write($"Porta Aberta encontrada : {port}   ");
+                    Console.Write($"Porta TCP Aberta encontrada : {port}   ");
                     res = res + " " + port;
                 }
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write($"Porta fechada : {port}   ");
+                    Console.Write($"TCP fechada  : {port}   ");
                     Console.ForegroundColor = ConsoleColor.White;
                 }
             }
@@ -36,6 +36,7 @@ namespace IpScan {
             Console.WriteLine("\nEscaneamento concluído.");
             Console.WriteLine($"Portas abertas encontradas:{res} ");
             Console.ForegroundColor = ConsoleColor.White;
+            Console.ReadLine();
         }
        static async Task<bool> Scan(string ip, int porta, int time = 50) {
             using (TcpClient tcpClient = new TcpClient())
@@ -52,8 +53,9 @@ namespace IpScan {
                         return false;
                     }
                 }
-                catch
+                catch 
                 {
+     
                     return false;
                 }
             }
